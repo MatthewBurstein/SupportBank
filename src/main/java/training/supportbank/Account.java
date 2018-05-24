@@ -10,4 +10,8 @@ public class Account {
         this.balance = Float.valueOf(0);
     }
 
+    public String getName() {
+        return name;
+    }
+
 }
