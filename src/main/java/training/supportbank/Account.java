@@ -36,6 +36,18 @@ public class Account {
         transactions.add(transaction);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (!Account.class.isAssignableFrom(other.getClass())) {
+            return false;
+        }
+        Account otherAccount = (Account) other;
+        return (name.equals(otherAccount.getName()) && balance.equals(otherAccount.getBalance()));
+    }
+
     private void debit(Float amount) {
         balance -= amount;
     }

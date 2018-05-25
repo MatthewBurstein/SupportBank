@@ -4,9 +4,7 @@ import training.supportbank.Account;
 import training.supportbank.Bank;
 
 import java.util.*;
-import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankTest {
@@ -29,21 +27,15 @@ public class BankTest {
 
     @Test
     public void addMultipleAccountsAddsMultipleAccountsToBank() {
-//        List<Account> expected = new ArrayList<>();
-//        Account account1 = new Account("account1");
-//        Account account2 = new Account("account2");
-//        expected.add(account1);
-//        expected.add(account2);
-//        Set<String> accountsToAdd = new HashSet<>();
-//        accountsToAdd.add("account1");
-//        accountsToAdd.add("account2");
-//        bank.addMultipleAccounts(accountsToAdd);
-//        ArrayList<String> accountNames = bank.getAccounts().map(account -> account.getName());
-//        assertEquals(expected, bank.getAccounts());
+        HashMap<String, Account> expected = new HashMap<>();
+        Account account1 = new Account("account1");
+        Account account2 = new Account("account2");
+        expected.put("account1", account1);
+        expected.put("account2", account2);
+        Set<String> accountsToAdd = new HashSet<>();
+        accountsToAdd.add("account1");
+        accountsToAdd.add("account2");
+        bank.addMultipleAccounts(accountsToAdd);
+        assertEquals(expected, bank.getAccounts());
     }
-
-//    @Test
-//    public void addTransactionAddsTransactionToBank() {
-//        Transaction transaction = new Transaction
-//    }
 }

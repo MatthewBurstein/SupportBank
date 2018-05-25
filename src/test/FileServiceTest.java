@@ -3,10 +3,7 @@ import org.junit.jupiter.api.Test;
 import training.supportbank.Bank;
 import training.supportbank.FileService;
 
-import java.io.BufferedReader;
-import java.nio.Buffer;
 import java.util.*;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FileServiceTest {
 
     FileService fs = new FileService("./TestTransactions.csv");
-    Bank bank = new Bank();
 
     @Test
     public void returnsASetOfAccountNames() {
@@ -29,7 +25,7 @@ public class FileServiceTest {
        String[] transaction1 = {"01/01/2014", "Jon A", "Sarah T", "Pokemon Training", "7.8"};
        String[] transaction2 = {"04/01/2014", "Stephen S", "Tim L", "Lunch", "4.37"};
        String[] transaction3 = {"08/01/2014", "Laura B", "Stephen S", "Lunch", "5.09"};
-       List<String[]> expected = new ArrayList<String[]>();
+       List<String[]> expected = new ArrayList<>();
        expected.add(transaction1);
        expected.add(transaction2);
        expected.add(transaction3);
