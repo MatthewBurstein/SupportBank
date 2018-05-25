@@ -3,6 +3,8 @@ package training.supportbank;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,7 +18,7 @@ public class FileService {
     }
 
 
-    public void createAccounts(Bank bank) {
+    public Set<String> getAccountNames() {
         Stream<String[]> stream = parseCSV();
         Set<String> accountNames = stream
                 .map(line -> line[1])
@@ -25,7 +27,14 @@ public class FileService {
         Set<String> otherAccountNames = stream.map(line -> line[2])
                 .collect(Collectors.toSet());
         accountNames.addAll(otherAccountNames);
-        bank.addMultipleAccounts(accountNames);
+        return accountNames;
+    }
+
+    public List<String[]> getTransactions() {
+        List<String[]> transactions = new ArrayList<String[]>();
+        Stream<String[]> data = parseCSV();
+        data.forEach(line -> transactions.add(line));
+        return transactions;
     }
 
     private Stream<String[]> parseCSV() {
