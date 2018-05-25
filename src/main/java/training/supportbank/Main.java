@@ -13,18 +13,9 @@ public class Main {
         Printer p = new Printer(bank);
         bank.addMultipleAccounts(fs.getAccountNames());
         bank.processMultipleTransactions(fs.getTransactions());
-        System.out.println("what would you like to do?");
-        System.out.println("Type 'List All' to list all accounts");
-        System.out.println("Type List <Account Name> to list transactions for a specific account");
+        UserInterface ui = new UserInterface(p);
+        ui.displayMenu();
         String command = scanner.nextLine();
-        if (command.equals("List All")) {
-            p.printAllAccounts();
-        } else if (command.startsWith("List ")) {
-            String accountName = command.substring(5);
-            p.printAccountHistory(accountName);
-        } else {
-            System.out.println("I do not know that command");
-        }
-
+        ui.processCommand(command);
     }
 }
