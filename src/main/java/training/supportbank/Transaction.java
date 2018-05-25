@@ -1,11 +1,17 @@
 package training.supportbank;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 
 public class Transaction {
 
+    private static final Logger LOGGER = LogManager.getLogger("Transaction logger");
     private final LocalDate date;
     private final String from;
     private final String to;
@@ -35,8 +41,13 @@ public class Transaction {
     }
 
     private LocalDate getDate(String date) {
-        DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate dateObject = LocalDate.parse(date, formatter);
+        LocalDate dateObject = null;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            dateObject = LocalDate.parse(date, formatter);
+        } catch (DateTimeParseException e){
+            LOGGER.log(Level.ERROR, "Transaction failed - invalid date{from: " + from + ", to: " + to + ", date: " + date + "}");
+        }
         return dateObject;
     }
 
@@ -45,7 +56,7 @@ public class Transaction {
         try {
             amountFloat = Float.parseFloat(amount);
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            LOGGER.log(Level.WARN, "Transaction failed - invalid amount{from: " + from + ", to: " + to + ", date: " + date + "}");
         }
         return amountFloat;
     }

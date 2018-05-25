@@ -1,5 +1,9 @@
 package training.supportbank;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +15,7 @@ import java.util.stream.Stream;
 
 public class FileService {
 
+    private static final Logger LOGGER = LogManager.getLogger("FileService logger");
     private final String filePath;
 
     public FileService(String filePath) {
@@ -41,7 +46,9 @@ public class FileService {
         FileReader csvData = null;
         try {
             csvData = new FileReader(filePath);
+            LOGGER.log(Level.INFO, "File opened:" + filePath);
         } catch (FileNotFoundException e) {
+            LOGGER.log(Level.ERROR, "File not found: " + filePath);
             System.out.println("Error reading file: " + e.getMessage());
         }
         BufferedReader br = new BufferedReader(csvData);
