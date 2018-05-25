@@ -1,17 +1,19 @@
 package training.supportbank;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 public class Main {
 
-    private static final Logger LOGGER = new LogManager();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static void main(String args[]) {
 
-        LOGGER.log(Level.FINEST, "testing logging on startup");
+        LOGGER.log(Level.INFO, "Program starting");
 
         Scanner scanner = new Scanner(System.in);
         Bank bank = new Bank();
