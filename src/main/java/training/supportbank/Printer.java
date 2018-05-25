@@ -26,7 +26,7 @@ public class Printer {
         if (accountName.equals(transaction.getFrom())) {
             transactionType = "debit";
         } else if (accountName.equals(transaction.getTo())) {
-            transactionType = "credty";
+            transactionType = "credit";
         }
         System.out.println(transaction.getDate() + " " +
             transactionType + " £" +

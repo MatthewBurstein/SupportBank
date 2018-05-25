@@ -19,6 +19,9 @@ public class Main {
         String command = scanner.nextLine();
         if (command.equals("List All")) {
             p.printAllAccounts();
+        } else if (command.startsWith("List ")) {
+            String accountName = command.substring(5);
+            p.printAccountHistory(accountName);
         } else {
             System.out.println("I do not know that command");
         }

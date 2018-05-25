@@ -27,14 +27,13 @@ public class Account {
         return transactions;
     }
 
-    public Float processTransaction(Transaction transaction) {
+    public void processTransaction(Transaction transaction) {
         if (name.equals(transaction.getFrom())) {
             debit(transaction.getAmount());
         } else if (name.equals(transaction.getTo())) {
             credit(transaction.getAmount());
         }
         transactions.add(transaction);
-        return balance;
     }
 
     private void debit(Float amount) {

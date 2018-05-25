@@ -1,6 +1,5 @@
 package training.supportbank;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -11,7 +10,6 @@ public class Bank {
     private static HashMap<String, Account> accounts;
 
     public Bank() {
-        System.out.println("Bank created");
         this.accounts = new HashMap<>();
     }
     
