@@ -25,7 +25,7 @@ public class JSONFileService {
         this.data.addAll(parseJson());
     }
 
-    public ArrayList<Transaction> getTransactions() {
+    public List<Transaction> getTransactions() {
         return data;
     }
 
