@@ -20,7 +20,7 @@ public class JSONFileService {
         this.filePath = filePath;
     }
 
-    public List<Transaction> parse() {
+    public List<Transaction> parseJson() {
         FileReader fileReader = null;
         Type collectionType = new TypeToken<ArrayList<Transaction>>(){}.getType();
         try {

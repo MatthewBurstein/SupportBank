@@ -13,7 +13,7 @@ public class JSONFileServiceTest {
     JSONFileService fs = new JSONFileService("TestTransactions.json");
 
     @Test
-    public void parseProcessesTransactionsCorrectly() {
+    public void parseJsonProcessesTransactionsCorrectly() {
         List<Transaction> expected = new ArrayList<>();
         Transaction transaction1 = new Transaction("01/01/2013", "Jon A", "Gergana I", "Sandbox Help", "2.14");
         Transaction transaction2 = new Transaction("04/01/2013", "Chris W", "Dan W", "Coffee", "10.53");
@@ -21,7 +21,7 @@ public class JSONFileServiceTest {
         expected.add(transaction1);
         expected.add(transaction2);
         expected.add(transaction3);
-        List<Transaction> actual = fs.parse();
+        List<Transaction> actual = fs.parseJson();
         assertArrayEquals(expected.toArray(), actual.toArray());
     }
 }

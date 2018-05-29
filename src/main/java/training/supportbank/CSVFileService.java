@@ -13,13 +13,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FileService {
+public class CSVFileService {
 
-    private static final Logger LOGGER = LogManager.getLogger("FileService logger");
+    private static final Logger LOGGER = LogManager.getLogger("CSVFileService logger");
     private final String filePath;
     private final ArrayList<String[]> data;
 
-    public FileService(String filePath) {
+    public CSVFileService(String filePath) {
         this.filePath = filePath;
         this.data = new ArrayList<>();
         parseCSV();

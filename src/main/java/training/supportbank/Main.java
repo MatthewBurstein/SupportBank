@@ -17,8 +17,8 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         Bank bank = new Bank();
-        FileService fs = new FileService("./Transactions2014.csv");
-        FileService dodgyfs = new FileService("./DodgyTransactions2015.csv");
+        CSVFileService fs = new CSVFileService("./Transactions2014.csv");
+        CSVFileService dodgyfs = new CSVFileService("./DodgyTransactions2015.csv");
 //        JSONFileService jsonFileService = new JSONFileService("./Transactions2013.json");
         Printer p = new Printer(bank);
         UserInterface ui = new UserInterface(p);
