@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2013-01-01",
+    "fromAccount": "Jon A",
+    "toAccount": "Gergana I",
+    "narrative": "Sandbox Help",
+    "amount": 2.14
+  },
+  {
+    "date": "2013-01-04",
+    "fromAccount": "Chris W",
+    "toAccount": "Dan W",
+    "narrative": "Coffee",
+    "amount": 10.53
+  },
+  {
+    "date": "2013-01-05",
+    "fromAccount": "Stephen S",
+    "toAccount": "Tim L",
+    "narrative": "Sandcastle Help",
+    "amount": 10.57
+  }
+]

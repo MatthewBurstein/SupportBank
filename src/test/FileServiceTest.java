@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import training.supportbank.Bank;
 import training.supportbank.FileService;
+import training.supportbank.Transaction;
 
 import java.util.*;
 
@@ -22,14 +23,15 @@ public class FileServiceTest {
     
     @Test
     public void returnsAListOfTransactions() {
-       String[] transaction1 = {"01/01/2014", "Jon A", "Sarah T", "Pokemon Training", "7.8"};
-       String[] transaction2 = {"04/01/2014", "Stephen S", "Tim L", "Lunch", "4.37"};
-       String[] transaction3 = {"08/01/2014", "Laura B", "Stephen S", "Lunch", "5.09"};
-       List<String[]> expected = new ArrayList<>();
+       Transaction transaction1 = new Transaction("01/01/2014", "Jon A", "Sarah T", "Pokemon Training", "7.8");
+       Transaction transaction2 = new Transaction("04/01/2014", "Stephen S", "Tim L", "Lunch", "4.37");
+       Transaction transaction3 = new Transaction("08/01/2014", "Laura B", "Stephen S", "Lunch", "5.09");
+       List<Transaction> expected = new ArrayList<>();
        expected.add(transaction1);
        expected.add(transaction2);
        expected.add(transaction3);
-       assertArrayEquals(expected.toArray(), fs.getTransactions().toArray());
+       List<Transaction> actual = fs.getTransactions();
+       assertArrayEquals(expected.toArray(), actual.toArray());
     }
     
 

@@ -17,32 +17,35 @@ public class FileService {
 
     private static final Logger LOGGER = LogManager.getLogger("FileService logger");
     private final String filePath;
+    private final ArrayList<String[]> data;
 
     public FileService(String filePath) {
         this.filePath = filePath;
+        this.data = new ArrayList<>();
+        parseCSV();
     }
 
 
     public Set<String> getAccountNames() {
-        Stream<String[]> stream = parseCSV();
-        Set<String> accountNames = stream
+        Set<String> accountNames = data
+                .stream()
                 .map(line -> line[1])
                 .collect(Collectors.toSet());
-        stream = parseCSV();
-        Set<String> otherAccountNames = stream.map(line -> line[2])
+        Set<String> otherAccountNames = data.stream().map(line -> line[2])
                 .collect(Collectors.toSet());
         accountNames.addAll(otherAccountNames);
         return accountNames;
     }
 
-    public List<String[]> getTransactions() {
-        List<String[]> transactions = new ArrayList<String[]>();
-        Stream<String[]> data = parseCSV();
-        data.forEach(line -> transactions.add(line));
-        return transactions;
+    public List<Transaction> getTransactions() {
+        List<Transaction> transactionList = new ArrayList<Transaction>();
+        for (String[] transaction : data) {
+            transactionList.add(buildTransaction(transaction));
+        }
+        return transactionList;
     }
 
-    private Stream<String[]> parseCSV() {
+    private void parseCSV() {
         FileReader csvData = null;
         try {
             csvData = new FileReader(filePath);
@@ -52,9 +55,13 @@ public class FileService {
             System.out.println("Error reading file: " + e.getMessage());
         }
         BufferedReader br = new BufferedReader(csvData);
-        Stream<String[]> dataStream = br.lines()
+        br.lines()
                 .skip(1)
-                .map(line -> line.split(","));
-        return dataStream;
+                .map(line -> line.split(","))
+                .forEach(data::add);
+    }
+
+    private Transaction buildTransaction(String[] transactionArray){
+        return new Transaction(transactionArray[0], transactionArray[1], transactionArray[2], transactionArray[3],transactionArray[4]);
     }
 }

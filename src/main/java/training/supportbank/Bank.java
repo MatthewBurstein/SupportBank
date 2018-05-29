@@ -31,13 +31,12 @@ public class Bank {
         accountNames.forEach(name -> addAccount(name));
     }
 
-    public void processTransaction(String[] transactionArray) {
-            Transaction transaction = new Transaction(transactionArray[0], transactionArray[1], transactionArray[2], transactionArray[3], transactionArray[4]);
-            accounts.get(transaction.getFrom()).processTransaction(transaction);
-            accounts.get(transaction.getTo()).processTransaction(transaction);
+    public void processTransaction(Transaction transaction) {
+            accounts.get(transaction.getFromAccount()).processTransaction(transaction);
+            accounts.get(transaction.getToAccount()).processTransaction(transaction);
     }
 
-    public void processMultipleTransactions(List<String[]> transactions) {
+    public void processMultipleTransactions(List<Transaction> transactions) {
         transactions.forEach(transaction -> processTransaction(transaction));
     }
 }

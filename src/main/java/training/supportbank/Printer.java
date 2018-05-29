@@ -23,9 +23,9 @@ public class Printer {
 
     public void printTransaction(Transaction transaction, String accountName) {
         String transactionType = "";
-        if (accountName.equals(transaction.getFrom())) {
+        if (accountName.equals(transaction.getFromAccount())) {
             transactionType = "debit";
-        } else if (accountName.equals(transaction.getTo())) {
+        } else if (accountName.equals(transaction.getToAccount())) {
             transactionType = "credit";
         }
         System.out.println(transaction.getDate() + " " +
