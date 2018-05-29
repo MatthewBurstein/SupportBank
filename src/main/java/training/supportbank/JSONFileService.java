@@ -15,13 +15,13 @@ public class JSONFileService {
         this.filePath = filePath;
     }
 
-    public Stream<String[]> parseJSON() {
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (jsonElement, type, jsonDeserializationContext) ->
-                // Convert jsonElement to a LocalDate here...
-        );
-        Gson gson = gsonBuilder.create();
-        System.out.println(gson);
-    }
+//    public void parseJSON() {
+//        GsonBuilder gsonBuilder = new GsonBuilder();
+//        gsonBuilder.registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (jsonElement, type, jsonDeserializationContext) -> {
+//                System.out.println(jsonElement);
+//    });
+//        Gson gson = gsonBuilder.create();
+//        System.out.println(gson);
+//    }
 
 }

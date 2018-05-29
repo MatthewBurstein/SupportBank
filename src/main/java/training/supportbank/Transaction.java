@@ -13,22 +13,22 @@ public class Transaction {
 
     private static final Logger LOGGER = LogManager.getLogger("Transaction logger");
     private final LocalDate date;
-    private final String from;
-    private final String to;
+    private final String fromAccount;
+    private final String toAccount;
     private final String narrative;
     private final float amount;
 
-    public Transaction(String date, String from, String to, String narrative, String amount) {
+    public Transaction(String date, String fromAccount, String toAccount, String narrative, String amount) {
         this.date = getDate(date);
-        this.from = from;
-        this.to = to;
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
         this.narrative = narrative;
         this.amount = getAmount(amount);
     }
 
-    public String getFrom() {return from;}
+    public String getFromAccount() {return fromAccount;}
 
-    public String getTo() {return to;}
+    public String getToAccount() {return toAccount;}
 
     public float getAmount() {return amount;}
 
@@ -46,7 +46,7 @@ public class Transaction {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             dateObject = LocalDate.parse(date, formatter);
         } catch (DateTimeParseException e){
-            LOGGER.log(Level.ERROR, "Transaction failed - invalid date{from: " + from + ", to: " + to + ", date: " + date + "}");
+            LOGGER.log(Level.ERROR, "Transaction failed - invalid date{from: " + fromAccount + ", to: " + toAccount + ", date: " + date + "}");
         }
         return dateObject;
     }
@@ -56,7 +56,7 @@ public class Transaction {
         try {
             amountFloat = Float.parseFloat(amount);
         } catch (NumberFormatException e) {
-            LOGGER.log(Level.WARN, "Transaction failed - invalid amount{from: " + from + ", to: " + to + ", date: " + date + "}");
+            LOGGER.log(Level.ERROR, "Transaction failed - invalid amount{from: " + fromAccount + ", to: " + toAccount + ", date: " + date + "}");
         }
         return amountFloat;
     }

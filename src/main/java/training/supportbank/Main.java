@@ -19,6 +19,7 @@ public class Main {
         Bank bank = new Bank();
         FileService fs = new FileService("./Transactions2014.csv");
         FileService dodgyfs = new FileService("./DodgyTransactions2015.csv");
+        JSONFileService jsonFileService = new JSONFileService("./Transactions2013.json");
         Printer p = new Printer(bank);
         UserInterface ui = new UserInterface(p);
         bank.addMultipleAccounts(fs.getAccountNames());

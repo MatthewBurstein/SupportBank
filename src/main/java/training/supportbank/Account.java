@@ -28,9 +28,9 @@ public class Account {
     }
 
     public void processTransaction(Transaction transaction) {
-        if (name.equals(transaction.getFrom())) {
+        if (name.equals(transaction.getFromAccount())) {
             debit(transaction.getAmount());
-        } else if (name.equals(transaction.getTo())) {
+        } else if (name.equals(transaction.getToAccount())) {
             credit(transaction.getAmount());
         }
         transactions.add(transaction);
