@@ -11,16 +11,38 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class JSONFileService {
 
     private final String filePath;
+    private final ArrayList<Transaction> data;
 
     public JSONFileService(String filePath) {
         this.filePath = filePath;
+        this.data = new ArrayList<>();
+        this.data.addAll(parseJson());
     }
 
-    public List<Transaction> parseJson() {
+    public ArrayList<Transaction> getTransactions() {
+        return data;
+    }
+
+    public Set<String> getAccountNames() {
+        Set<String> accountNames = data
+                .stream()
+                .map(Transaction::getFromAccount)
+                .collect(Collectors.toSet());
+        Set<String> otherAccountNames = data
+                .stream()
+                .map(Transaction::getToAccount)
+                .collect(Collectors.toSet());
+        accountNames.addAll(otherAccountNames);
+        return accountNames;
+    }
+
+    private List<Transaction> parseJson() {
         FileReader fileReader = null;
         Type collectionType = new TypeToken<ArrayList<Transaction>>(){}.getType();
         try {
