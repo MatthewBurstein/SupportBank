@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class JSONFileService {
+public class JSONParser {
 
     private final String filePath;
     private final ArrayList<Transaction> data;
 
-    public JSONFileService(String filePath) {
+    public JSONParser(String filePath) {
         this.filePath = filePath;
         this.data = new ArrayList<>();
         this.data.addAll(parseJson());

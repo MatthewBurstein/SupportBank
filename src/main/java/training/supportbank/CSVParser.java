@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class CSVFileService {
+public class CSVParser {
 
     private static final Logger LOGGER = LogManager.getLogger("CSVFileService logger");
     private final String filePath;
     private final ArrayList<String[]> data;
 
-    public CSVFileService(String filePath) {
+    public CSVParser (String filePath) {
         this.filePath = filePath;
         this.data = new ArrayList<>();
         parseCSV();

@@ -1,16 +1,14 @@
 import org.junit.jupiter.api.Test;
-import training.supportbank.JSONFileService;
+import training.supportbank.JSONParser;
 import training.supportbank.Transaction;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JSONFileServiceTest {
 
-    JSONFileService fs = new JSONFileService("TestTransactions.json");
+    JSONParser parser = new JSONParser("TestTransactions.json");
 
     @Test
     public void getTransactionsReturnsListOfTransactions() {
@@ -21,7 +19,7 @@ public class JSONFileServiceTest {
         expected.add(transaction1);
         expected.add(transaction2);
         expected.add(transaction3);
-        assertEquals(expected, fs.getTransactions());
+        assertEquals(expected, parser.getTransactions());
     }
 
     @Test
@@ -29,6 +27,6 @@ public class JSONFileServiceTest {
         Set<String> expected = new HashSet<>();
         String[] names = {"Chris W", "Gergana I", "Tim L", "Jon A", "Stephen S", "Dan W"};
         expected.addAll(Arrays.asList(names));
-        assertEquals(expected, fs.getAccountNames());
+        assertEquals(expected, parser.getAccountNames());
     }
 }

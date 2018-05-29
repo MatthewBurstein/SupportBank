@@ -1,22 +1,22 @@
 import org.junit.jupiter.api.Test;
-import training.supportbank.CSVFileService;
 import training.supportbank.Transaction;
-
+import training.supportbank.CSVParser;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CSVFileServiceTest {
 
-    CSVFileService fs = new CSVFileService("./TestTransactions.csv");
+public class CSVParserTest {
+
+    CSVParser parser = new CSVParser("./TestTransactions.csv");
 
     @Test
     public void returnsASetOfAccountNames() {
         Set<String> expected = new HashSet<String>();
         String[] names = {"Sarah T", "Laura B", "Tim L", "Jon A", "Stephen S"};
         expected.addAll(Arrays.asList(names));
-        assertEquals(expected, fs.getAccountNames());
+        assertEquals(expected, parser.getAccountNames());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class CSVFileServiceTest {
         expected.add(transaction1);
         expected.add(transaction2);
         expected.add(transaction3);
-        List<Transaction> actual = fs.getTransactions();
+        List<Transaction> actual = parser.getTransactions();
         assertArrayEquals(expected.toArray(), actual.toArray());
     }
 
