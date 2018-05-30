@@ -23,7 +23,7 @@ public class AccountTest {
     }
 
     @Test
-    public void processTransactionCrebitIncreasesBalance() {
+    public void processTransactionCreditIncreasesBalance() {
         Transaction transaction = new Transaction("01/01/2017", "anotherAccount", "accountName", "someNarrative", "1.4");
         account.processTransaction(transaction);
         BigDecimal expected = new BigDecimal("1.4");
