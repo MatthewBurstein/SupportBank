@@ -3,6 +3,7 @@ package training.supportbank;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +11,11 @@ public class Account {
 
     private final String name;
     private List<Transaction> transactions;
-    private Float balance;
+    private BigDecimal balance;
 
     public Account(String name) {
         this.name = name;
-        this.balance = Float.valueOf(0);
+        this.balance = BigDecimal.valueOf(0);
         this.transactions = new ArrayList<>();
     }
 
@@ -22,7 +23,7 @@ public class Account {
         return name;
     }
 
-    public Float getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
@@ -61,11 +62,11 @@ public class Account {
         return builder.toHashCode();
     }
 
-    private void debit(Float amount) {
-        balance -= amount;
+    private void debit(BigDecimal amount) {
+        balance = balance.subtract(amount);
     }
 
-    private void credit(Float amount) {
-        balance += amount;
+    private void credit(BigDecimal amount) {
+        balance = balance.add(amount);
     }
 }

@@ -18,7 +18,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Bank bank = new Bank();
         Printer printer = new Printer(bank);
-        FileService fs = new FileService("./Transactions2014.csv");
         UserInterface ui = new UserInterface(printer, bank);
         while (ui.isRunning()) {
             ui.displayMenu();

@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import training.supportbank.Account;
 import training.supportbank.Transaction;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,14 +16,16 @@ public class AccountTest {
     public void processTransactionDebitReducesBalance() {
         Transaction transaction = new Transaction("01/01/2017", "accountName", "anotherAccount", "someNarrative", "1.4");
         account.processTransaction(transaction);
-        assertEquals(account.getBalance(), Float.valueOf("-1.4"));
+        BigDecimal expected = new BigDecimal("-1.4");
+        assertEquals(account.getBalance(), expected);
     }
 
     @Test
     public void processTransactionCrebitIncreasesBalance() {
         Transaction transaction = new Transaction("01/01/2017", "anotherAccount", "accountName", "someNarrative", "1.4");
         account.processTransaction(transaction);
-        assertEquals(account.getBalance(), Float.valueOf("1.4"));
+        BigDecimal expected = new BigDecimal("1.4");
+        assertEquals(account.getBalance(), expected);
     }
 
     @Test

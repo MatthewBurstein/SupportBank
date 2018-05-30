@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -18,21 +19,21 @@ public class Transaction {
     private final String fromAccount;
     private final String toAccount;
     private final String narrative;
-    private final float amount;
+    private final BigDecimal amount;
 
     public Transaction(String date, String fromAccount, String toAccount, String narrative, String amount) {
         this.date = convertDateType(date);
         this.fromAccount = fromAccount;
         this.toAccount = toAccount;
         this.narrative = narrative;
-        this.amount = getAmount(amount);
+        this.amount = convertAmountType(amount);
     }
 
     public String getFromAccount() {return fromAccount;}
 
     public String getToAccount() {return toAccount;}
 
-    public float getAmount() {return amount;}
+    public BigDecimal getAmount() {return amount;}
 
     public LocalDate getDate() {
         return date;
@@ -53,14 +54,14 @@ public class Transaction {
         return dateObject;
     }
 
-    private float getAmount(String amount) {
-        float amountFloat = 0;
+    private BigDecimal convertAmountType(String amount) {
+        BigDecimal amountNumber = null;
         try {
-            amountFloat = Float.parseFloat(amount);
+            amountNumber = new BigDecimal(amount);
         } catch (NumberFormatException e) {
             LOGGER.log(Level.ERROR, "Transaction failed - invalid amount{from: " + fromAccount + ", to: " + toAccount + ", date: " + date + "}");
         }
-        return amountFloat;
+        return amountNumber;
     }
 
     @Override
