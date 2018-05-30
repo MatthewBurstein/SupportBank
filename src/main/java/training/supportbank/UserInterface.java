@@ -34,9 +34,7 @@ public class UserInterface {
             printer.printAccountHistory(accountName);
         } else if (command.startsWith("Import ")) {
             String filePath = command.substring(7);
-            FileService fs = new FileService(filePath);
-            bank.addMultipleAccounts(fs.getAccountNames());
-            bank.processMultipleTransactions(fs.getTransactions());
+            bank.importFile(filePath);
         } else if (command.equals("Exit")){
             running = false;
         } else {

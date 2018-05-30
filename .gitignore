@@ -52,6 +52,7 @@ target/
 logs/
 
 dependency-reduced-pom.xml
+checkstyle_config.xml
 
 Transactions2014.csv
 TestTransactions.csv

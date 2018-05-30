@@ -12,13 +12,19 @@ public class Bank {
 
     private static final Logger LOGGER = LogManager.getLogger("Bank logger");
 
-    private static HashMap<String, Account> accounts;
+    private HashMap<String, Account> accounts;
 
     public Bank() {
         accounts = new HashMap<>();
     }
     
-    public static HashMap<String, Account> getAccounts() {return accounts;}
+    public HashMap<String, Account> getAccounts() {return accounts;}
+
+    public void importFile(String filePath) {
+        FileService fs = new FileService(filePath);
+        addMultipleAccounts(fs.getAccountNames());
+        processMultipleTransactions(fs.getTransactions());
+    }
 
     private void addAccount(String name) {
         if(accounts.get(name) == null) {
