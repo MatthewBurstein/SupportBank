@@ -1,5 +1,8 @@
 package training.supportbank;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,15 +40,25 @@ public class Account {
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other == null) {
-            return false;
-        }
-        if (!Account.class.isAssignableFrom(other.getClass())) {
-            return false;
-        }
-        Account otherAccount = (Account) other;
-        return (name.equals(otherAccount.getName()) && balance.equals(otherAccount.getBalance()));
+    public boolean equals(Object obj) {
+        if (obj == null) { return false; }
+        if (obj == this) { return true; }
+        if (obj.getClass() != getClass()) { return false; }
+        Account rhs = (Account) obj;
+        return new EqualsBuilder()
+                .append(name, rhs.getName())
+                .append(balance, rhs.getBalance())
+                .append(transactions, rhs.getTransactions())
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        HashCodeBuilder builder = new HashCodeBuilder();
+        builder.append(name)
+                .append(balance)
+                .append(transactions);
+        return builder.toHashCode();
     }
 
     private void debit(Float amount) {

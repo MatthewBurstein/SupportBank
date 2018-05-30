@@ -17,21 +17,14 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         Bank bank = new Bank();
-        CSVParser csvFs = new CSVParser("./Transactions2014.csv");
-        CSVParser dodgyFs = new CSVParser("./DodgyTransactions2015.csv");
-        JSONParser jsonFs = new JSONParser("./Transactions2013.json");
-        Printer p = new Printer(bank);
+        Printer printer = new Printer(bank);
         FileService fs = new FileService("./Transactions2014.csv");
-        UserInterface ui = new UserInterface(p, fs);
-        bank.addMultipleAccounts(csvFs.getAccountNames());
-        bank.processMultipleTransactions(csvFs.getTransactions());
-        bank.addMultipleAccounts(dodgyFs.getAccountNames());
-        bank.processMultipleTransactions(dodgyFs.getTransactions());
-        bank.addMultipleAccounts(jsonFs.getAccountNames());
-        bank.processMultipleTransactions(jsonFs.getTransactions());
-        ui.displayMenu();
-        String command = scanner.nextLine();
-        ui.processCommand(command);
+        UserInterface ui = new UserInterface(printer, bank);
+        while (ui.isRunning()) {
+            ui.displayMenu();
+            String command = scanner.nextLine();
+            ui.processCommand(command);
+        }
     }
 
 }

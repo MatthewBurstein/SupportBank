@@ -19,8 +19,6 @@ public class FileServiceTest {
         expected.add(transaction1);
         expected.add(transaction2);
         expected.add(transaction3);
-        List<Transaction> actual = fs.getTransactions();
-        assertEquals(expected, actual);
         assertEquals(expected, fs.getTransactions());
     }
 
@@ -35,5 +33,14 @@ public class FileServiceTest {
         expected.add(transaction2);
         expected.add(transaction3);
         assertEquals(expected, fs.getTransactions());
+    }
+
+    @Test
+    public void getAccountNamesReturnsAccountNames() {
+        FileService fs = new FileService("TestTransactions.json");
+        Set<String> expected = new HashSet<>();
+        String[] names = {"Chris W", "Gergana I", "Tim L", "Jon A", "Stephen S", "Dan W"};
+        expected.addAll(Arrays.asList(names));
+        assertEquals(expected, fs.getAccountNames());
     }
 }

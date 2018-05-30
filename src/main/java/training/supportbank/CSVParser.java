@@ -24,18 +24,6 @@ public class CSVParser {
         parseCSV();
     }
 
-
-    public Set<String> getAccountNames() {
-        Set<String> accountNames = data
-                .stream()
-                .map(line -> line[1])
-                .collect(Collectors.toSet());
-        Set<String> otherAccountNames = data.stream().map(line -> line[2])
-                .collect(Collectors.toSet());
-        accountNames.addAll(otherAccountNames);
-        return accountNames;
-    }
-
     public List<Transaction> getTransactions() {
         List<Transaction> transactionList = new ArrayList<Transaction>();
         for (String[] transaction : data) {

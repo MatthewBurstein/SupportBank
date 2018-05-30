@@ -12,14 +12,6 @@ public class CSVParserTest {
     CSVParser parser = new CSVParser("./TestTransactions.csv");
 
     @Test
-    public void returnsASetOfAccountNames() {
-        Set<String> expected = new HashSet<String>();
-        String[] names = {"Sarah T", "Laura B", "Tim L", "Jon A", "Stephen S"};
-        expected.addAll(Arrays.asList(names));
-        assertEquals(expected, parser.getAccountNames());
-    }
-
-    @Test
     public void returnsAListOfTransactions() {
         Transaction transaction1 = new Transaction("01/01/2014", "Jon A", "Sarah T", "Pokemon Training", "7.8");
         Transaction transaction2 = new Transaction("04/01/2014", "Stephen S", "Tim L", "Lunch", "4.37");
@@ -31,6 +23,5 @@ public class CSVParserTest {
         List<Transaction> actual = parser.getTransactions();
         assertArrayEquals(expected.toArray(), actual.toArray());
     }
-
 
 }

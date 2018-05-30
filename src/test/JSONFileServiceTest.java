@@ -22,11 +22,4 @@ public class JSONFileServiceTest {
         assertEquals(expected, parser.getTransactions());
     }
 
-    @Test
-    public void getAccountNamesReturnsAccountNames() {
-        Set<String> expected = new HashSet<>();
-        String[] names = {"Chris W", "Gergana I", "Tim L", "Jon A", "Stephen S", "Dan W"};
-        expected.addAll(Arrays.asList(names));
-        assertEquals(expected, parser.getAccountNames());
-    }
 }
