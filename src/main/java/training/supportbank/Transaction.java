@@ -43,6 +43,10 @@ public class Transaction {
         return narrative;
     }
 
+    public boolean isValid() {
+        return !(getAmount() == null || getDate() == null);
+    }
+
     private LocalDate convertDateType(String date) {
         LocalDate dateObject = null;
         try {

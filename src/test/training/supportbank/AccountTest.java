@@ -1,3 +1,5 @@
+package training.supportbank;
+
 import org.junit.jupiter.api.Test;
 import training.supportbank.Account;
 import training.supportbank.Transaction;

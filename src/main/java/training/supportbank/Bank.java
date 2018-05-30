@@ -20,7 +20,7 @@ public class Bank {
     
     public static HashMap<String, Account> getAccounts() {return accounts;}
 
-    public void addAccount(String name) {
+    private void addAccount(String name) {
         if(accounts.get(name) == null) {
             Account account = new Account(name);
             accounts.put(name, account);
@@ -33,11 +33,14 @@ public class Bank {
     }
 
     private void processTransaction(Transaction transaction) {
+        if (transaction.isValid()) {
             accounts.get(transaction.getFromAccount()).processTransaction(transaction);
             accounts.get(transaction.getToAccount()).processTransaction(transaction);
+        }
     }
 
     void processMultipleTransactions(List<Transaction> transactions) {
-        transactions.forEach(transaction -> processTransaction(transaction));
+        transactions.forEach(this::processTransaction);
+
     }
 }

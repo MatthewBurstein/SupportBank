@@ -21,10 +21,10 @@ public class CSVParser {
     public CSVParser (String filePath) {
         this.filePath = filePath;
         this.data = new ArrayList<>();
-        parseCSV();
     }
 
     public List<Transaction> getTransactions() {
+        parseCSV();
         List<Transaction> transactionList = new ArrayList<Transaction>();
         for (String[] transaction : data) {
             transactionList.add(buildTransaction(transaction));
