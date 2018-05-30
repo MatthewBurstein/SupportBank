@@ -13,25 +13,25 @@ public class Account {
     private List<Transaction> transactions;
     private BigDecimal balance;
 
-    public Account(String name) {
+    public Account(final String name) {
         this.name = name;
         this.balance = BigDecimal.valueOf(0);
         this.transactions = new ArrayList<>();
     }
 
-    public String getName() {
+    final String getName() {
         return name;
     }
 
-    public BigDecimal getBalance() {
+    final BigDecimal getBalance() {
         return balance;
     }
 
-    public List<Transaction> getTransactions() {
+    public final List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void processTransaction(Transaction transaction) {
+    final void processTransaction(Transaction transaction) {
         if (name.equals(transaction.getFromAccount())) {
             debit(transaction.getAmount());
         } else if (name.equals(transaction.getToAccount())) {
@@ -42,9 +42,15 @@ public class Account {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) { return false; }
-        if (obj == this) { return true; }
-        if (obj.getClass() != getClass()) { return false; }
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
         Account rhs = (Account) obj;
         return new EqualsBuilder()
                 .append(name, rhs.getName())
@@ -62,11 +68,11 @@ public class Account {
         return builder.toHashCode();
     }
 
-    private void debit(BigDecimal amount) {
+    private void debit(final BigDecimal amount) {
         balance = balance.subtract(amount);
     }
 
-    private void credit(BigDecimal amount) {
+    private void credit(final BigDecimal amount) {
         balance = balance.add(amount);
     }
 }

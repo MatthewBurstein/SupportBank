@@ -11,7 +11,7 @@ public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger("Main logger");
 
-    public static void main(String args[]) {
+    public static void main(final String args[]) {
 
         LOGGER.log(Level.INFO, "Program starting");
 
@@ -25,5 +25,4 @@ public class Main {
             ui.processCommand(command);
         }
     }
-
 }

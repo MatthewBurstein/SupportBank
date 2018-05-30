@@ -6,18 +6,18 @@ public class UserInterface {
     private final Bank bank;
     private boolean running;
 
-    public UserInterface(Printer printer, Bank bank) {
+    UserInterface(final Printer printer, final Bank bank) {
         this.printer = printer;
         this.bank = bank;
 
         this.running = true;
     }
 
-    public boolean isRunning() {
+    final boolean isRunning() {
         return running;
     }
 
-    public void displayMenu() {
+    final void displayMenu() {
         System.out.println("what would you like to do?");
         System.out.println("Available commands:");
         System.out.println("'List All' => list all accounts");
@@ -26,7 +26,7 @@ public class UserInterface {
         System.out.println("'Exit' => exit program");
     }
 
-    public void processCommand(String command) {
+    final void processCommand(final String command) {
         if (command.equals("List All")) {
             printer.printAllAccounts();
         } else if (command.startsWith("List ")) {

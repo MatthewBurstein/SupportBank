@@ -11,27 +11,26 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class JSONParser {
 
     private final String filePath;
     private final ArrayList<Transaction> data;
 
-    public JSONParser(String filePath) {
+    JSONParser(final String filePath) {
         this.filePath = filePath;
         this.data = new ArrayList<>();
         this.data.addAll(parseJson());
     }
 
-    public List<Transaction> getTransactions() {
+    public final List<Transaction> getTransactions() {
         return data;
     }
 
     private List<Transaction> parseJson() {
         FileReader fileReader = null;
-        Type collectionType = new TypeToken<ArrayList<Transaction>>(){}.getType();
+        Type collectionType = new TypeToken<ArrayList<Transaction>>(){}
+            .getType();
         try {
             fileReader = new FileReader(filePath);
 

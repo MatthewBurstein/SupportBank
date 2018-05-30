@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 public class Transaction {
 
@@ -21,7 +20,11 @@ public class Transaction {
     private final String narrative;
     private final BigDecimal amount;
 
-    public Transaction(String date, String fromAccount, String toAccount, String narrative, String amount) {
+    public Transaction(final String date,
+                       final String fromAccount,
+                       final String toAccount,
+                       final String narrative,
+                       final String amount) {
         this.date = convertDateType(date);
         this.fromAccount = fromAccount;
         this.toAccount = toAccount;
@@ -29,21 +32,21 @@ public class Transaction {
         this.amount = convertAmountType(amount);
     }
 
-    public String getFromAccount() {return fromAccount;}
+    final String getFromAccount() { return fromAccount; }
 
-    public String getToAccount() {return toAccount;}
+    final String getToAccount() { return toAccount; }
 
-    public BigDecimal getAmount() {return amount;}
+    final BigDecimal getAmount() { return amount; }
 
-    public LocalDate getDate() {
+    final LocalDate getDate() {
         return date;
     }
 
-    public String getNarrative() {
+    final String getNarrative() {
         return narrative;
     }
 
-    public boolean isValid() {
+    final boolean isValid() {
         return !(getAmount() == null || getDate() == null);
     }
 
@@ -53,7 +56,9 @@ public class Transaction {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             dateObject = LocalDate.parse(date, formatter);
         } catch (DateTimeParseException e){
-            LOGGER.log(Level.ERROR, "Transaction failed - invalid date{from: " + fromAccount + ", to: " + toAccount + ", date: " + date + "}");
+            LOGGER.log(Level.ERROR,
+                    "Transaction failed - invalid date{from: " + fromAccount +
+                            ", to: " + toAccount + ", date: " + date + "}");
         }
         return dateObject;
     }

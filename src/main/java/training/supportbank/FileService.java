@@ -7,20 +7,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class FileService{
+public class FileService {
 
     private final String filePath;
     private List<Transaction> transactions;
     private final String extension;
 
-    public FileService(String filePath) {
+    public FileService(final String filePath) {
         this.filePath = filePath;
         this.transactions = new ArrayList<>();
         this.extension = FilenameUtils.getExtension(filePath);
         buildTransactionsFromFile();
     }
 
-    public Set<String> getAccountNames() {
+    public final Set<String> getAccountNames() {
         Set<String> accountNames = transactions
                 .stream()
                 .map(Transaction::getFromAccount)
@@ -33,11 +33,11 @@ public class FileService{
         return accountNames;
     }
 
-    public List<Transaction> getTransactions() {
+    public final List<Transaction> getTransactions() {
         return transactions;
     }
 
-    public void buildTransactionsFromFile() {
+    public final void buildTransactionsFromFile() {
         if (extension.equals("csv")) {
             transactions = getTransactionsFromCsv();
         } else if (extension.equals("json")) {

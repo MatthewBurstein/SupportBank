@@ -9,8 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class CSVParser {
 
@@ -18,12 +16,12 @@ public class CSVParser {
     private final String filePath;
     private final ArrayList<String[]> data;
 
-    public CSVParser (String filePath) {
+    CSVParser(final String filePath) {
         this.filePath = filePath;
         this.data = new ArrayList<>();
     }
 
-    public List<Transaction> getTransactions() {
+    public final List<Transaction> getTransactions() {
         parseCSV();
         List<Transaction> transactionList = new ArrayList<Transaction>();
         for (String[] transaction : data) {
@@ -48,7 +46,11 @@ public class CSVParser {
                 .forEach(data::add);
     }
 
-    private Transaction buildTransaction(String[] transactionArray){
-        return new Transaction(transactionArray[0], transactionArray[1], transactionArray[2], transactionArray[3],transactionArray[4]);
+    private Transaction buildTransaction(final String[] transactionArray) {
+        return new Transaction(transactionArray[0],
+                transactionArray[1],
+                transactionArray[2],
+                transactionArray[3],
+                transactionArray[4]);
     }
 }
